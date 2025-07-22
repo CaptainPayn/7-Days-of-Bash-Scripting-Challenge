@@ -1,0 +1,25 @@
+#!/bin/bash
+#tell interpreter which language
+
+echo "Welcome to day Juan"
+#echo command prints to the screen what is in the quotes
+
+read -p "Enter your name: " NAME
+#assigning string variable
+echo "Hello $NAME"
+
+read -p "Enter an integer: " NUM1
+read -p "Enter another integer: " NUM2
+#read -p allows you to get keyboard input while also 
+#displaying a prompt in one line
+
+let SUM=$NUM1+$NUM2
+echo "The sum of $NUM1 and $NUM2 is $SUM"
+#using "let" lets you do arithmetic
+
+echo "You are using $TERM terminal"
+echo "Your default editor is $EDITOR and your hostname is $HOSTNAME"
+#built-in variables can be found using printenv or env
+
+ls *.sh
+#this will list all current directory files that have extension ".sh"
