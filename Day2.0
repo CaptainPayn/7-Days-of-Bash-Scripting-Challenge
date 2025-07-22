@@ -1,0 +1,23 @@
+#!/bin/bash
+#author Philip Yurovskiyh
+
+echo "Welcome to the Interactive File and Directory Explorer!"
+#welcome screen
+
+#initiating loop
+while true; do
+    #listing all files in current directory in human-readable format
+    ls -lah .
+    #getting input from user
+    read -p "Enter a line of text (Press Enter without text to exit): " TEXT
+    #if input is blank exit
+    if [[ $TEXT = "" ]]; then
+        echo "Exiting. GOODBYE!"
+        exit 0
+    #counting chars in user input and assigning to variable
+    else
+        CHARS=$(echo "$TEXT" | wc -m)
+        echo "Character count: $CHARS"
+
+    fi
+done
