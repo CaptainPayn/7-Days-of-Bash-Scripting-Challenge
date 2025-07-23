@@ -1,0 +1,29 @@
+#!/bin/bash
+
+#put parameter into variable
+SOURCE_DIR="$1"
+
+#error handling if no parameter is passed
+if [[ -z "$SOURCE_DIR" ]]; then
+    echo "You must enter directory as parameter(/path/to/directory)"
+    exit 1
+fi
+
+#error handling if the directory doesnt exist
+if [[ ! -d "$SOURCE_DIR" ]]; then
+    echo "Directory to backup doesnt exist"
+    exit 1
+fi
+
+#take date and format to be used as name
+DATE=$(date +"%Y-%m-%d")
+
+#make name for backup directory using the DATE variable
+BACKUP_DIR=$SOURCE_DIR/backup_"$DATE"
+
+#make directory with backup name variable
+mkdir -p "$BACKUP_DIR"
+
+#using rsync to copy everything except for the backup directory
+rsync -av --exclude="$(basename "$BACKUP_DIR")" "$SOURCE_DIR"/ "$BACKUP_DIR"/ && echo "Created backup of ${SOURCE_DIR}"
+
